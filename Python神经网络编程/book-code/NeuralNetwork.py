@@ -17,6 +17,7 @@ class NeuralNetwork(object):
         self.lr=learningRate
 
         self.activation_function = lambda x: scipy.special.expit(x)
+        self.inverse_activation_function = lambda x: scipy.special.logit(x)
 
         pass
 
