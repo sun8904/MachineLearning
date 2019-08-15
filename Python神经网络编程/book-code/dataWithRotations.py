@@ -1,8 +1,9 @@
 import numpy
 import matplotlib.pyplot as plt
-import scipy.misc
+from NeuralNetwork import NeuralNetwork as neuralNetwork
+import scipy.ndimage
+
 import pylab
-from NeuralNetwork import NeuralNetwork
 
 # number of input, hidden and output nodes
 input_nodes = 784
@@ -15,7 +16,7 @@ learning_rate = 0.01
 # create instance of neural network
 n = neuralNetwork(input_nodes,hidden_nodes,output_nodes, learning_rate)
 # load the mnist training data CSV file into a list
-training_data_file = open("mnist_dataset/mnist_train.csv", 'r')
+training_data_file = open("mnist_train.csv", 'r')
 training_data_list = training_data_file.readlines()
 training_data_file.close()
 
@@ -24,7 +25,6 @@ training_data_file.close()
 
 # epochs is the number of times the training data set is used for training
 epochs = 10
-
 for e in range(epochs):
     # go through all records in the training data set
     for record in training_data_list:
@@ -58,6 +58,26 @@ for e in range(epochs):
         pass
     pass
 
+
+# load test data
+test_file = open("mnist_test.csv", 'r')
+test_list = test_file.readlines()
+test_file.close()
+
+# test all result
+score_card = []
+for record in test_list:
+    all_values = record.split(',')
+    correct_label = int(all_values[0])
+    inputs = numpy.asfarray(all_values[1:])/255.0*0.99+0.01
+    outputs = n.query(inputs)
+    lable = numpy.argmax(outputs)
+    if lable == correct_label:
+        score_card.append(1)
+    else:
+        score_card.append(0)
+        pass
+    pass
 # calculate the performance score, the fraction of correct answers
-scorecard_array = numpy.asarray(scorecard)
+scorecard_array = numpy.asarray(score_card)
 print ("performance = ", scorecard_array.sum() / scorecard_array.size)
