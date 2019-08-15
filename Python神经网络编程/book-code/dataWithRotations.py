@@ -1,9 +1,7 @@
 import numpy
-import matplotlib.pyplot as plt
 from NeuralNetwork import NeuralNetwork as neuralNetwork
 import scipy.ndimage
 
-import pylab
 
 # number of input, hidden and output nodes
 input_nodes = 784
@@ -56,6 +54,7 @@ for e in range(epochs):
         # n.train(inputs_minus10_img.reshape(784), targets)
 
         pass
+    print('epochs done', e)
     pass
 
 
