@@ -39,3 +39,4 @@ BibTeX entry:
 创建环境
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 conda env create -f environment.yml
+conda env update -f environment.yml
