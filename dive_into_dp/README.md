@@ -37,5 +37,5 @@ BibTeX entry:
 
 
 创建环境
-
-conda evn create -f environment.yml
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+conda env create -f environment.yml
